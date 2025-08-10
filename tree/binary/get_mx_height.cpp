@@ -59,38 +59,23 @@ Node* input_tree(){
     return root;
 }
 
-
-
-int count_binary_nodes(Node* root){
-
-}
-
-void lever_order_traversal(Node* root){
+int max_height(Node* root){
     if(root == NULL){
-        cout << "No Tree" << endl;
-        return;
+        return 0;
+    }
+    if(root->left == NULL && root->right == NULL){
+        return 0;
     }
 
-    queue<Node *> q;
-    q.push(root);
+    int l = max_height(root->left);
+    int r = max_height(root->right);
 
-    while(!q.empty()){
-        Node *f = q.front();
-        q.pop();
-
-        cout << f->val << " ";
-
-        if(f->left)
-            q.push(f->left);
-        if(f->right)
-            q.push(f->right);
-    }
+    return max(l, r) + 1;
 }
-
 
 int main(){
     Node *root = input_tree();
-    lever_order_traversal(root);
+    cout << max_height(root);
 
     return 0;
 }

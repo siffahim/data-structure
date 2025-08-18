@@ -13,6 +13,9 @@ class Node{
     }
 };
 
+//10 6 23 -1 9 19 29 7 -1 12 -1 -1 35 -1 -1 -1 -1 -1 -1
+//21
+
 Node* input_tree(){
     int val;
     cin >> val;
@@ -59,26 +62,9 @@ Node* input_tree(){
     return root;
 }
 
-
-
-<<<<<<< HEAD
-
-
-int main(){
-=======
-int count_binary_nodes(Node* root){
-
-}
-
-void lever_order_traversal(Node* root){
-    if(root == NULL){
-        cout << "No Tree" << endl;
-        return;
-    }
-
-    queue<Node *> q;
+void level_order_traversal(Node* root){
+    queue<Node*> q;
     q.push(root);
-
     while(!q.empty()){
         Node *f = q.front();
         q.pop();
@@ -92,11 +78,33 @@ void lever_order_traversal(Node* root){
     }
 }
 
+void insert(Node* &root, int val){
+    if(root == NULL)
+        root = new Node(val);
+    if(root->val > val){
+        if(root->left == NULL){
+            root->left = new Node(val);
+        }
+        else{
+            insert(root->left, val);
+        }
+    }
+    else{
+        if(root->right == NULL){
+            root->right = new Node(val);
+        }
+        else{
+            insert(root->right, val);
+        }
+    }
+}
 
 int main(){
     Node *root = input_tree();
-    lever_order_traversal(root);
->>>>>>> 789c5fbf23d3e397a6012cb407cc15f1b26e9607
+    int val;
+    cin >> val;
+    insert(root, val);
+    level_order_traversal(root);
 
     return 0;
 }

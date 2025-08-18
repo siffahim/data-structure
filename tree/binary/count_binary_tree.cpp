@@ -61,11 +61,6 @@ Node* input_tree(){
 
 
 
-<<<<<<< HEAD
-
-
-int main(){
-=======
 int count_binary_nodes(Node* root){
 
 }
@@ -96,7 +91,6 @@ void lever_order_traversal(Node* root){
 int main(){
     Node *root = input_tree();
     lever_order_traversal(root);
->>>>>>> 789c5fbf23d3e397a6012cb407cc15f1b26e9607
 
     return 0;
 }

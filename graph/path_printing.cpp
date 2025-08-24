@@ -3,6 +3,7 @@ using namespace std;
 vector<int> adj_lits[1005];
 bool vis[1005];
 int level[1005];
+int parent[1005];
 
 void bfs(int src){
     queue<int> q;
@@ -21,6 +22,7 @@ void bfs(int src){
                 q.push(child);
                 vis[child] = true;
                 level[child] = level[per] + 1;
+                parent[child] = per;
             }
         };
     }
@@ -38,28 +40,23 @@ int main(){
     }
     memset(vis, false, sizeof(vis));
     memset(level, -1, sizeof(level));
+    memset(parent, -1, sizeof(parent));
     int src, dst;
     cin >> src >> dst;
-
     bfs(src);
 
-    // for (int i = 0; i < n; i++){
-    //     cout << i << "--> " << level[i] << endl;
-    // }
+    int node = dst;
+    vector<int> path;
+    while(node != -1){
+        //cout << node << " ";
+        path.push_back(node);
+        node = parent[node];
+    }
 
-    cout << level[dst] << endl;
+    reverse(path.begin(), path.end());
+    for(int x: path){
+        cout << x << " ";
+    }
 
     return 0;
 }
-
-// 7 8
-// 0 1
-// 1 3
-// 3 2
-// 1 4
-// 3 5
-// 2 5
-// 5 6
-// 4 6
-// 0
-// 6
